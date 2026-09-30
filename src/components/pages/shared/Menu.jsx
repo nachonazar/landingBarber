@@ -13,8 +13,6 @@ const links = [
   { to: "/#servicios", label: "Servicios" }, // Servicios sigue en Inicio.jsx
   { to: "/galeria", label: "Galería" },
   { to: "/#contacto", label: "Contacto" },
-  { to: "/reservar-turno", label: "Reservar Turno" }, // Apunta a la nueva ruta
-  { to: "/panel-barbero", label: "Panel Barbero" },
 ];
 
 const Menu = () => {
@@ -162,7 +160,7 @@ const Menu = () => {
           {/* BOTÓN MÓVIL ACTUALIZADO A LA NUEVA RUTA */}
           <Link
             to="/reservar-turno"
-            className="sm:hidden mt-space-sm flex items-center justify-center px-space-md py-space-md bg-primary-container text-on-primary-container font-label-md text-label-md uppercase tracking-wider font-bold rounded shadow-md"
+            className="sm:hidden mt-space-sm flex items-center justify-center px-space-md py-space-md bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider font-bold rounded shadow-lg hover:bg-primary-fixed-dim transition-all"
           >
             Reservar Cita Ahora
           </Link>

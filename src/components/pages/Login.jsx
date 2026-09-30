@@ -189,7 +189,7 @@ const Login = () => {
                 {/* Botón Principal */}
                 <button
                   type="submit"
-                  className="w-full mt-2 py-3 px-4 rounded-lg bg-secondary-container hover:bg-on-secondary-fixed-variant text-primary font-label-lg text-label-lg tracking-wider uppercase flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="w-full mt-2 py-3 px-4 bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider font-bold rounded-lg shadow-lg hover:bg-primary-fixed-dim transition-all duration-200 flex items-center justify-center space-x-2"
                 >
                   <span className="material-symbols-outlined text-lg">
                     chair
@@ -280,7 +280,7 @@ const Login = () => {
 
                 <button
                   type="submit"
-                  className="w-full mt-2 py-3 px-4 rounded-lg bg-primary hover:bg-surface-tint text-on-primary font-label-lg text-label-lg tracking-wider uppercase flex items-center justify-center space-x-2 shadow-lg transition-all duration-200"
+                  className="w-full mt-2 py-3 px-4 bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider font-bold rounded-lg shadow-lg hover:bg-primary-fixed-dim transition-all duration-200 flex items-center justify-center space-x-2"
                 >
                   <span className="material-symbols-outlined text-lg">
                     verified

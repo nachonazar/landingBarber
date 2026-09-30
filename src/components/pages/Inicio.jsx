@@ -27,7 +27,7 @@ const Inicio = () => {
 
         {/* Hero Section */}
         <section className="relative w-full overflow-hidden bg-surface-container-lowest">
-          <div className="absolute inset-0 z-0 opacity-25">
+          <div className="absolute inset-0 z-0 opacity-50">
             <div
               className="w-full h-full bg-cover bg-center"
               style={{
@@ -79,63 +79,6 @@ const Inicio = () => {
                 </span>
                 Ver Servicios & Precios
               </a>
-            </div>
-            <div className="w-full pt-space-xl grid grid-cols-2 md:grid-cols-4 gap-space-md">
-              <div className="flex items-center gap-space-sm p-space-sm rounded bg-surface-container-low/70">
-                <span
-                  className="material-symbols-outlined text-primary text-2xl"
-                  style={{ fontVariationSettings: "'FILL' 1" }}
-                >
-                  star
-                </span>
-                <div className="flex flex-col">
-                  <span className="font-title-md text-title-md font-bold text-on-surface">
-                    4.9 / 5.0
-                  </span>
-                  <span className="font-label-sm text-label-sm uppercase tracking-wider text-outline">
-                    Más de 2.400 Reseñas
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center gap-space-sm p-space-sm rounded bg-surface-container-low/70">
-                <span className="material-symbols-outlined text-secondary text-2xl">
-                  verified
-                </span>
-                <div className="flex flex-col">
-                  <span className="font-title-md text-title-md font-bold text-on-surface">
-                    96 Años
-                  </span>
-                  <span className="font-label-sm text-label-sm uppercase tracking-wider text-outline">
-                    Legado Artesanal
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center gap-space-sm p-space-sm rounded bg-surface-container-low/70">
-                <span className="material-symbols-outlined text-primary text-2xl">
-                  local_cafe
-                </span>
-                <div className="flex flex-col">
-                  <span className="font-title-md text-title-md font-bold text-on-surface">
-                    Cortesía Club
-                  </span>
-                  <span className="font-label-sm text-label-sm uppercase tracking-wider text-outline">
-                    Whisky & Café Espresso
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center gap-space-sm p-space-sm rounded bg-surface-container-low/70">
-                <span className="material-symbols-outlined text-secondary text-2xl">
-                  timer
-                </span>
-                <div className="flex flex-col">
-                  <span className="font-title-md text-title-md font-bold text-on-surface">
-                    Sin Esperas
-                  </span>
-                  <span className="font-label-sm text-label-sm uppercase tracking-wider text-outline">
-                    Turno Puntual y Rito Individual
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -943,30 +886,6 @@ const Inicio = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-        {/* Modern Call to Action (Reemplaza el viejo formulario) */}
-        <section className="w-full py-space-2xl bg-surface-container-lowest border-t border-outline/20">
-          <div className="max-w-4xl mx-auto px-gutter text-center flex flex-col items-center gap-space-lg">
-            <div className="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-lg">
-              <span className="material-symbols-outlined text-3xl">
-                event_available
-              </span>
-            </div>
-            <h2 className="font-headline-xl text-headline-xl text-on-surface">
-              Asegura tu Lugar en el Sillón
-            </h2>
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-              Experimenta el verdadero rito del cuidado masculino. Elige a tu
-              maestro, el horario perfecto y asegura tu lugar con anticipación a
-              través de nuestra agenda digital.
-            </p>
-            <Link
-              to="/reservar-turno"
-              className="px-space-xl py-space-md bg-primary text-on-primary font-label-lg text-label-lg font-bold uppercase tracking-wider rounded shadow-lg hover:bg-primary-fixed-dim transition-all"
-            >
-              Iniciar Proceso de Reserva
-            </Link>
           </div>
         </section>
       </div>

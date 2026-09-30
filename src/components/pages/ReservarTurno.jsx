@@ -41,15 +41,81 @@ const HORARIOS = [
 ];
 
 const ReservarTurno = () => {
-  const [barberoSeleccionado, setBarberoSeleccionado] = useState(1); // ID 1 por defecto
+  const [barberoSeleccionado, setBarberoSeleccionado] = useState(1);
   const [horaSeleccionada, setHoraSeleccionada] = useState("16:30 hs");
+
+  // --- LÓGICA DE CALENDARIO DINÁMICO ---
+  const [fechaActual] = useState(new Date()); // El día de hoy
+  const [fechaSeleccionada, setFechaSeleccionada] = useState(new Date()); // El día que elige el usuario
+  const [mesVisible, setMesVisible] = useState(
+    new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 1),
+  ); // Mes mostrado en el calendario
+
+  const barberoActual = BARBEROS.find((b) => b.id === barberoSeleccionado);
 
   // Estados del cliente
   const [nombre, setNombre] = useState("Carlos E. Sarmiento");
   const [whatsapp, setWhatsapp] = useState("+54 9 11 5849-2041");
   const [email, setEmail] = useState("carlos.sarmiento@correo.com");
 
-  const barberoActual = BARBEROS.find((b) => b.id === barberoSeleccionado);
+  // Helpers de formato de fechas (Capitalizando la primera letra)
+  const formatMes = (date) => {
+    const texto = date.toLocaleDateString("es-AR", {
+      month: "long",
+      year: "numeric",
+    });
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+  };
+
+  const formatFechaCompleta = (date) => {
+    const texto = date.toLocaleDateString("es-AR", {
+      weekday: "long",
+      day: "numeric",
+      month: "short",
+    });
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+  };
+
+  // Navegación de meses
+  const irMesAnterior = () => {
+    // No permitir ir a meses anteriores al actual
+    if (
+      mesVisible.getMonth() > fechaActual.getMonth() ||
+      mesVisible.getFullYear() > fechaActual.getFullYear()
+    ) {
+      setMesVisible(
+        new Date(mesVisible.getFullYear(), mesVisible.getMonth() - 1, 1),
+      );
+    }
+  };
+  const irMesSiguiente = () =>
+    setMesVisible(
+      new Date(mesVisible.getFullYear(), mesVisible.getMonth() + 1, 1),
+    );
+
+  // Generación de la grilla del mes
+  const diasEnElMes = new Date(
+    mesVisible.getFullYear(),
+    mesVisible.getMonth() + 1,
+    0,
+  ).getDate();
+  // Obtener qué día de la semana empieza el mes (0 = Domingo, 1 = Lunes). Ajustamos para que Lunes sea 0.
+  const primerDiaSemana =
+    (new Date(mesVisible.getFullYear(), mesVisible.getMonth(), 1).getDay() +
+      6) %
+    7;
+
+  const diasDelMes = [];
+  // Rellenar espacios vacíos al principio
+  for (let i = 0; i < primerDiaSemana; i++) {
+    diasDelMes.push(null);
+  }
+  // Rellenar con los días reales
+  for (let i = 1; i <= diasEnElMes; i++) {
+    diasDelMes.push(
+      new Date(mesVisible.getFullYear(), mesVisible.getMonth(), i),
+    );
+  }
 
   return (
     <main className="w-full pt-20 bg-surface min-h-screen pb-space-2xl">
@@ -183,7 +249,7 @@ const ReservarTurno = () => {
                           </span>
                           <span>•</span>
                           <span className="flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">
+                            <span className="material-symbols-outlined text-sm">
                               check_circle
                             </span>{" "}
                             Incluye Loción Artesanal
@@ -287,7 +353,7 @@ const ReservarTurno = () => {
                   </div>
                 </div>
 
-                {/* Paso 3: Calendario */}
+                {/* Paso 3: Calendario Dinámico */}
                 <div className="bg-surface-container rounded-xl p-space-lg shadow-lg flex flex-col gap-space-lg">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
                     <div className="flex items-center gap-space-sm">
@@ -302,24 +368,38 @@ const ReservarTurno = () => {
                       <span className="material-symbols-outlined text-sm text-primary">
                         today
                       </span>
-                      <span>Septiembre 2026</span>
+                      <span>{formatMes(mesVisible)}</span>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
-                    {/* Fake Calendar (Visual only for now) */}
+                    {/* Componente Calendario */}
                     <div className="flex flex-col gap-space-sm bg-surface-container-low p-space-md rounded-lg">
                       <div className="flex items-center justify-between pb-space-xs">
                         <span className="font-headline-sm text-headline-sm text-on-surface font-semibold">
-                          Septiembre 2026
+                          {formatMes(mesVisible)}
                         </span>
                         <div className="flex items-center gap-space-xs">
-                          <button className="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors">
+                          <button
+                            type="button"
+                            onClick={irMesAnterior}
+                            disabled={
+                              mesVisible.getMonth() ===
+                                fechaActual.getMonth() &&
+                              mesVisible.getFullYear() ===
+                                fechaActual.getFullYear()
+                            }
+                            className="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                          >
                             <span className="material-symbols-outlined text-sm">
                               chevron_left
                             </span>
                           </button>
-                          <button className="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors">
+                          <button
+                            type="button"
+                            onClick={irMesSiguiente}
+                            className="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors"
+                          >
                             <span className="material-symbols-outlined text-sm">
                               chevron_right
                             </span>
@@ -336,56 +416,57 @@ const ReservarTurno = () => {
                         <span>Do</span>
                       </div>
                       <div className="grid grid-cols-7 gap-1 text-center font-body-sm text-body-sm">
-                        {/* Days Mockup */}
-                        <span className="p-2 text-outline-variant opacity-40">
-                          31
-                        </span>
-                        {Array.from({ length: 29 }).map((_, i) => {
-                          const day = i + 1;
-                          const isPast = day < 24;
-                          const isToday = day === 24;
+                        {diasDelMes.map((fecha, i) => {
+                          // Si es null, es un relleno del inicio del mes
+                          if (!fecha) {
+                            return (
+                              <span key={`empty-${i}`} className="p-2"></span>
+                            );
+                          }
 
-                          if (isPast)
+                          const dia = fecha.getDate();
+                          const esPasado =
+                            fecha.setHours(0, 0, 0, 0) <
+                            fechaActual.setHours(0, 0, 0, 0);
+                          const esSeleccionado =
+                            fecha.getTime() === fechaSeleccionada.getTime();
+
+                          if (esPasado) {
                             return (
                               <button
-                                key={day}
-                                className="p-2 rounded text-outline-variant hover:bg-surface-container-highest cursor-not-allowed"
+                                key={i}
+                                type="button"
+                                className="p-2 rounded text-outline-variant opacity-30 cursor-not-allowed"
                                 disabled
                               >
-                                {day}
+                                {dia}
                               </button>
                             );
-                          if (isToday)
+                          }
+
+                          if (esSeleccionado) {
                             return (
                               <button
-                                key={day}
+                                key={i}
+                                type="button"
                                 className="p-2 rounded bg-primary text-on-primary font-bold shadow-md ring-2 ring-primary/60 scale-105"
                               >
-                                {day}
+                                {dia}
                               </button>
                             );
+                          }
 
                           return (
                             <button
-                              key={day}
+                              key={i}
+                              type="button"
+                              onClick={() => setFechaSeleccionada(fecha)}
                               className="p-2 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors"
                             >
-                              {day}
+                              {dia}
                             </button>
                           );
                         })}
-                        <span className="p-2 text-outline-variant opacity-40">
-                          1
-                        </span>
-                        <span className="p-2 text-outline-variant opacity-40">
-                          2
-                        </span>
-                        <span className="p-2 text-outline-variant opacity-40">
-                          3
-                        </span>
-                        <span className="p-2 text-outline-variant opacity-40">
-                          4
-                        </span>
                       </div>
                     </div>
 
@@ -393,10 +474,10 @@ const ReservarTurno = () => {
                     <div className="flex flex-col gap-space-sm">
                       <div className="flex items-center justify-between">
                         <span className="font-label-lg text-label-lg text-on-surface uppercase tracking-wider font-semibold">
-                          Horarios Disponibles
+                          Horarios
                         </span>
                         <span className="font-label-sm text-label-sm text-primary uppercase tracking-wider">
-                          Jueves 24 Sept
+                          {formatFechaCompleta(fechaSeleccionada)}
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-space-xs max-h-[260px] overflow-y-auto pr-1">
@@ -405,6 +486,7 @@ const ReservarTurno = () => {
                             return (
                               <button
                                 key={i}
+                                type="button"
                                 disabled
                                 className="px-space-md py-space-sm rounded bg-surface-container-highest text-outline opacity-40 cursor-not-allowed font-body-sm text-body-sm flex items-center justify-between"
                               >
@@ -417,6 +499,7 @@ const ReservarTurno = () => {
                           return (
                             <button
                               key={i}
+                              type="button"
                               onClick={() => setHoraSeleccionada(h.hora)}
                               className={`px-space-md py-space-sm rounded font-body-sm text-body-sm flex items-center justify-between transition-colors ${
                                 isSelected
@@ -492,7 +575,8 @@ const ReservarTurno = () => {
                           event_available
                         </span>
                         <span>
-                          Jueves 24 de Septiembre • {horaSeleccionada}
+                          {formatFechaCompleta(fechaSeleccionada)} •{" "}
+                          {horaSeleccionada}
                         </span>
                       </div>
                     </div>

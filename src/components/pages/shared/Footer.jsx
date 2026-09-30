@@ -10,7 +10,6 @@ const navLinks = [
   { to: "/galeria", label: "Galería & Acabados" },
   { to: "/#contacto", label: "Ubicación & Contacto" },
   { to: "/reservar-turno", label: "Agenda tu Cita" }, // Apunta a la nueva ruta
-  { to: "/panel-barbero", label: "Acceso Profesional / Barbero" },
 ];
 
 const Footer = () => {
