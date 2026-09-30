@@ -1,15 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // Imagen temporal de Stitch: descargala a /public o /src/assets antes de publicar
 const LOGO_URL =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCIbAtdkso2___-PTz3LjGqy1laCG5tc0iV1yweBoovAYa9gXi-vrawr5OnrECB-eRHuyvHZkfhLRQjQnAAYvuFxQ4SNBMMLyYv1Pmy5WqXQd95bH6rLVIvbi3uJ8U25BuFUHgcOaOTG1faPjiLdVTWIPHjb-vDu9QQ9P0ctz2_5Y8XCBVIB-lACfrHeIPOrMKIp4eyQBE74d2I6z-bR3d_UToY4A0ofHwgTQ7MC24vXMFgaV2n7y6v';
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuCIbAtdkso2___-PTz3LjGqy1laCG5tc0iV1yweBoovAYa9gXi-vrawr5OnrECB-eRHuyvHZkfhLRQjQnAAYvuFxQ4SNBMMLyYv1Pmy5WqXQd95bH6rLVIvbi3uJ8U25BuFUHgcOaOTG1faPjiLdVTWIPHjb-vDu9QQ9P0ctz2_5Y8XCBVIB-lACfrHeIPOrMKIp4eyQBE74d2I6z-bR3d_UToY4A0ofHwgTQ7MC24vXMFgaV2n7y6v";
 
 const navLinks = [
-  { to: '/', label: 'Inicio' },
-  { to: '/servicios', label: 'Carta de Servicios & Precios' },
-  { to: '/galeria', label: 'Galería & Acabados' },
-  { to: '/reservar-turno', label: 'Agenda tu Cita' },
-  { to: '/panel-barbero', label: 'Acceso Profesional / Barbero' },
+  { to: "/", label: "Inicio" },
+  { to: "/#servicios", label: "Carta de Servicios & Precios" },
+  { to: "/galeria", label: "Galería & Acabados" },
+  { to: "/reservar-turno", label: "Agenda tu Cita" },
+  { to: "/panel-barbero", label: "Acceso Profesional / Barbero" },
 ];
 
 const Footer = () => {
@@ -25,15 +25,24 @@ const Footer = () => {
           {/* Marca */}
           <div className="flex flex-col gap-space-md">
             <div className="flex items-center gap-space-sm">
-              <img alt="Logo Barbería Tradicional" className="h-8 w-auto object-contain" src={LOGO_URL} />
-              <span className="font-headline-md text-headline-sm text-primary uppercase">La Barbería</span>
+              <img
+                alt="Logo Barbería Tradicional"
+                className="h-8 w-auto object-contain"
+                src={LOGO_URL}
+              />
+              <span className="font-headline-md text-headline-sm text-primary uppercase">
+                La Barbería
+              </span>
             </div>
             <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-              El santuario del caballero contemporáneo. Ritos tradicionales de afeitado con navaja, paños
-              calientes y corte de precisión artesanal en un entorno exclusivo de madera y cuero.
+              El santuario del caballero contemporáneo. Ritos tradicionales de
+              afeitado con navaja, paños calientes y corte de precisión
+              artesanal en un entorno exclusivo de madera y cuero.
             </p>
             <div className="flex items-center gap-space-sm text-primary font-label-sm text-label-sm uppercase tracking-widest">
-              <span className="material-symbols-outlined text-sm">verified</span>
+              <span className="material-symbols-outlined text-sm">
+                verified
+              </span>
               Maestros Artesanos Titulados
             </div>
           </div>
@@ -45,7 +54,11 @@ const Footer = () => {
             </span>
             <div className="flex flex-col gap-space-sm font-body-sm text-body-sm">
               {navLinks.map(({ to, label }) => (
-                <Link key={to} to={to} className="text-on-surface-variant hover:text-primary transition-colors">
+                <Link
+                  key={to}
+                  to={to}
+                  className="text-on-surface-variant hover:text-primary transition-colors"
+                >
                   {label}
                 </Link>
               ))}
@@ -73,7 +86,9 @@ const Footer = () => {
             </div>
             <div className="mt-space-sm">
               <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-space-xs">
-                <span className="material-symbols-outlined text-secondary text-sm">phone_in_talk</span>
+                <span className="material-symbols-outlined text-secondary text-sm">
+                  phone_in_talk
+                </span>
                 Recepción: 912 345 678
               </p>
             </div>
@@ -85,10 +100,13 @@ const Footer = () => {
               Club de Caballeros
             </span>
             <p className="font-body-sm text-body-sm text-on-surface-variant">
-              Suscríbete al boletín artesanal para invitaciones privadas, cuidados de barba y turnos
-              preferenciales.
+              Suscríbete al boletín artesanal para invitaciones privadas,
+              cuidados de barba y turnos preferenciales.
             </p>
-            <form className="flex flex-col gap-space-xs" onSubmit={handleSubscribe}>
+            <form
+              className="flex flex-col gap-space-xs"
+              onSubmit={handleSubscribe}
+            >
               <div className="flex items-center bg-surface-container-high rounded p-space-xs">
                 <input
                   className="bg-transparent w-full px-space-sm text-on-surface placeholder:text-outline focus:outline-none font-body-sm text-body-sm"
@@ -104,18 +122,29 @@ const Footer = () => {
                   Unirse
                 </button>
               </div>
-              <span className="font-label-sm text-label-sm text-outline">Respetamos su privacidad. Cero spam.</span>
+              <span className="font-label-sm text-label-sm text-outline">
+                Respetamos su privacidad. Cero spam.
+              </span>
             </form>
           </div>
         </div>
 
         {/* Legales */}
         <div className="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
-          <p>© {new Date().getFullYear()} La Barbería Tradicional S.L. Todos los derechos reservados.</p>
+          <p>
+            © {new Date().getFullYear()} La Barbería Tradicional S.L. Todos los
+            derechos reservados.
+          </p>
           <div className="flex items-center gap-space-lg">
-            <a className="hover:text-primary transition-colors" href="#">Privacidad</a>
-            <a className="hover:text-primary transition-colors" href="#">Términos de Servicio</a>
-            <a className="hover:text-primary transition-colors" href="#">Protocolo de Higiene</a>
+            <a className="hover:text-primary transition-colors" href="#">
+              Privacidad
+            </a>
+            <a className="hover:text-primary transition-colors" href="#">
+              Términos de Servicio
+            </a>
+            <a className="hover:text-primary transition-colors" href="#">
+              Protocolo de Higiene
+            </a>
           </div>
         </div>
       </div>

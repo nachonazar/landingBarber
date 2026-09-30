@@ -1,10 +1,13 @@
 import { Routes, Route, Outlet } from 'react-router-dom'
 import Inicio from './components/pages/Inicio'
 import Administrador from './components/pages/Administrador'
+import Login from './components/pages/Login'
+import Galeria from './components/pages/Galeria'
+import ReservarTurno from './components/pages/ReservarTurno'
+import Error404 from './components/pages/error404'
 import Footer from './components/pages/shared/Footer'
 import Menu from './components/pages/shared/Menu'
 
-// Layout del sitio público: el panel de administración tiene su propio layout
 const LayoutPublico = () => (
   <>
     <Menu />
@@ -18,10 +21,14 @@ function App() {
     <Routes>
       <Route element={<LayoutPublico />}>
         <Route path="/" element={<Inicio />} />
-        {/* Agregá acá el resto de las páginas públicas y, al final, la de error 404 */}
+        <Route path="/galeria" element={<Galeria />} />
+        
+        {/* Nueva ruta exclusiva para el sistema de reservas */}
+        <Route path="/reservar-turno" element={<ReservarTurno />} />
+        
+        <Route path="/mi-cuenta" element={<Login />} />
+        <Route path="*" element={<Error404 />} />
       </Route>
-
-      {/* Panel de administración (sin Menu ni Footer públicos) */}
       <Route path="/panel-barbero" element={<Administrador />} />
     </Routes>
   )

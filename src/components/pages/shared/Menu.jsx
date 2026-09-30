@@ -1,82 +1,132 @@
-import { Link, NavLink } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
-// Imágenes temporales de Stitch: descargalas a /public o /src/assets antes de publicar
+// Imágenes temporales de Stitch (luego reemplázalas por assets locales)
 const LOGO_URL =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCIbAtdkso2___-PTz3LjGqy1laCG5tc0iV1yweBoovAYa9gXi-vrawr5OnrECB-eRHuyvHZkfhLRQjQnAAYvuFxQ4SNBMMLyYv1Pmy5WqXQd95bH6rLVIvbi3uJ8U25BuFUHgcOaOTG1faPjiLdVTWIPHjb-vDu9QQ9P0ctz2_5Y8XCBVIB-lACfrHeIPOrMKIp4eyQBE74d2I6z-bR3d_UToY4A0ofHwgTQ7MC24vXMFgaV2n7y6v';
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuCIbAtdkso2___-PTz3LjGqy1laCG5tc0iV1yweBoovAYa9gXi-vrawr5OnrECB-eRHuyvHZkfhLRQjQnAAYvuFxQ4SNBMMLyYv1Pmy5WqXQd95bH6rLVIvbi3uJ8U25BuFUHgcOaOTG1faPjiLdVTWIPHjb-vDu9QQ9P0ctz2_5Y8XCBVIB-lACfrHeIPOrMKIp4eyQBE74d2I6z-bR3d_UToY4A0ofHwgTQ7MC24vXMFgaV2n7y6v";
 const AVATAR_URL =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuBaMpd7iOQddiInQEfsNPVj-YzAX5uncBJ904YKob5-Qujpmtrf6Q37ROVdQgMtTEAvNMMh7ctMyN_NzzzrA8HzsLl-Je_8pGihMAWolR7LP6P8WZM73jsqWSJsoA5fJ4dHF5M01kUqQFgC9T53MVU8koZQhluQ-iI9VhJS5Gt49hKgbf638bR8nkdyV0aLl5y_3N3b0n-W53TqpN6YqEdpyvabeK1mXqkaJh5Qf8HMTrXszv1S7zUC';
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuBaMpd7iOQddiInQEfsNPVj-YzAX5uncBJ904YKob5-Qujpmtrf6Q37ROVdQgMtTEAvNMMh7ctMyN_NzzzrA8HzsLl-Je_8pGihMAWolR7LP6P8WZM73jsqWSJsoA5fJ4dHF5M01kUqQFgC9T53MVU8koZQhluQ-iI9VhJS5Gt49hKgbf638bR8nkdyV0aLl5y_3N3b0n-W53TqpN6YqEdpyvabeK1mXqkaJh5Qf8HMTrXszv1S7zUC";
 
-// Ajustá las rutas a las que tengas definidas en App.jsx
 const links = [
-  { to: '/', label: 'Inicio', end: true },
-  { to: '/servicios', label: 'Servicios' },
-  { to: '/galeria', label: 'Galería' },
-  { to: '/reservar-turno', label: 'Reservar Turno' },
-  { to: '/panel-barbero', label: 'Panel Barbero' },
+  { to: "/", label: "Inicio" },
+  { to: "/#servicios", label: "Servicios" },
+  { to: "/galeria", label: "Galería" },
+  { to: "/reservar-turno", label: "Reservar Turno" },
+  { to: "/panel-barbero", label: "Panel Barbero" },
 ];
 
-const navLinkClass = ({ isActive }) =>
-  `font-label-lg text-label-lg uppercase tracking-wider transition-colors ${
-    isActive
-      ? 'text-primary bg-surface-container-high px-space-md py-space-sm rounded-lg'
-      : 'text-on-surface-variant hover:text-primary'
-  }`;
-
 const Menu = () => {
+  const { pathname, hash } = useLocation();
+  const [menuAbierto, setMenuAbierto] = useState(false);
+
+  // Cerrar el menú móvil automáticamente si cambia la ruta o el hash (cuando el usuario hace clic)
+  useEffect(() => {
+    setMenuAbierto(false);
+  }, [pathname, hash]);
+
+  // Bloquear el scroll de fondo cuando el menú móvil está abierto
+  useEffect(() => {
+    if (menuAbierto) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menuAbierto]);
+
+  const getLinkClass = (path, isMobile = false) => {
+    const isHashLink = path.includes("#");
+    let isActive = false;
+
+    if (isHashLink) {
+      isActive = pathname === "/" && hash === path.substring(1);
+    } else {
+      if (path === "/" && pathname === "/" && hash === "") {
+        isActive = true;
+      } else {
+        isActive = pathname === path && hash === "";
+      }
+    }
+
+    return `font-label-lg text-label-lg uppercase tracking-wider transition-colors ${
+      isActive
+        ? "text-primary bg-surface-container-high px-space-md py-space-sm rounded-lg"
+        : `text-on-surface-variant hover:text-primary ${isMobile ? "block py-space-sm" : ""}`
+    }`;
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Barra superior de información */}
-      <div className="w-full bg-secondary-container text-on-secondary-container px-gutter py-space-xs">
-        <div className="max-w-[1240px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-space-xs font-label-sm text-label-sm tracking-widest uppercase">
+      {/* Barra superior de información (Oculta en celulares pequeños para ahorrar espacio) */}
+      <div className="hidden sm:block w-full bg-secondary-container text-on-secondary-container px-gutter py-space-xs">
+        <div className="max-w-[1240px] mx-auto flex flex-col md:flex-row items-center justify-between gap-space-xs font-label-sm text-label-sm tracking-widest uppercase">
           <div className="flex items-center gap-space-md">
             <span className="flex items-center gap-space-xs">
-              <span className="material-symbols-outlined text-primary text-sm">schedule</span>
+              <span className="material-symbols-outlined text-primary text-sm">
+                schedule
+              </span>
               Martes a Sábado: 09:00 - 20:00 hs
             </span>
-            <span className="hidden md:inline-block text-outline-variant">•</span>
+            <span className="hidden md:inline-block text-outline-variant">
+              •
+            </span>
             <span className="hidden md:flex items-center gap-space-xs">
-              <span className="material-symbols-outlined text-primary text-sm">location_on</span>
+              <span className="material-symbols-outlined text-primary text-sm">
+                location_on
+              </span>
               Calle Mayor 42, Casco Histórico
             </span>
           </div>
           <div className="flex items-center gap-space-md">
-            <span className="text-primary-fixed">Atención Exclusiva con Cita Previa</span>
-            <span className="hidden sm:inline-block text-outline-variant">•</span>
-            <span className="hidden sm:inline">+34 912 345 678</span>
+            <span className="text-primary-fixed">Atención Exclusiva</span>
+            <span className="hidden md:inline-block text-outline-variant">
+              •
+            </span>
+            <span className="hidden md:inline">+34 912 345 678</span>
           </div>
         </div>
       </div>
 
       {/* Navegación principal */}
-      <div className="w-full bg-surface/90 backdrop-blur-xl shadow-[0_8px_32px_-4px_rgba(0,0,0,0.7)]">
+      <div className="w-full bg-surface/90 backdrop-blur-xl shadow-[0_8px_32px_-4px_rgba(0,0,0,0.7)] relative z-50">
         <div className="h-20 max-w-[1240px] mx-auto px-gutter flex items-center justify-between">
           <Link to="/" className="flex items-center gap-space-md group">
-            <img alt="Logo Barbería Tradicional" className="h-10 w-auto object-contain" src={LOGO_URL} />
+            <img
+              alt="Logo Barbería Tradicional"
+              className="h-10 w-auto object-contain"
+              src={LOGO_URL}
+            />
             <div className="flex flex-col">
               <span className="font-headline-md text-headline-sm tracking-wide text-primary uppercase">
                 La Barbería
               </span>
               <span className="font-label-sm text-label-sm tracking-widest uppercase text-on-surface-variant -mt-1">
-                Tradicional • Est. 1928
+                Est. 1928
               </span>
             </div>
           </Link>
 
+          {/* Nav Desktop */}
           <nav className="hidden lg:flex items-center gap-space-lg">
-            {links.map(({ to, label, end }) => (
-              <NavLink key={to} to={to} end={end} className={navLinkClass}>
+            {links.map(({ to, label }) => (
+              <Link key={to} to={to} className={getLinkClass(to)}>
                 {label}
-              </NavLink>
+              </Link>
             ))}
           </nav>
 
           <div className="flex items-center gap-space-md">
+            {/* Botón Reserva Desktop */}
             <Link
-              to="/reservar-turno"
+              to="/#reservar"
               className="hidden sm:inline-flex items-center justify-center px-space-lg py-space-sm bg-primary-container text-on-primary-container font-label-lg text-label-lg uppercase tracking-wider font-bold rounded shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] hover:bg-primary transition-colors"
             >
               Reservar Cita
             </Link>
+
+            {/* Perfil */}
             <Link
               to="/mi-cuenta"
               title="Cuenta de Cliente"
@@ -88,8 +138,40 @@ const Menu = () => {
                 src={AVATAR_URL}
               />
             </Link>
+
+            {/* Botón Menú Hamburguesa (Mobile) */}
+            <button
+              className="lg:hidden p-space-xs text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center"
+              onClick={() => setMenuAbierto(!menuAbierto)}
+              aria-label="Abrir menú"
+            >
+              <span className="material-symbols-outlined text-3xl">
+                {menuAbierto ? "close" : "menu"}
+              </span>
+            </button>
           </div>
         </div>
+      </div>
+
+      {/* Dropdown Menú Mobile */}
+      <div
+        className={`lg:hidden absolute top-full left-0 w-full bg-surface-container-low shadow-2xl transition-all duration-300 ease-in-out overflow-hidden ${
+          menuAbierto ? "max-h-[500px] border-b border-outline/20" : "max-h-0"
+        }`}
+      >
+        <nav className="flex flex-col py-space-md px-gutter gap-space-sm">
+          {links.map(({ to, label }) => (
+            <Link key={to} to={to} className={getLinkClass(to, true)}>
+              {label}
+            </Link>
+          ))}
+          <Link
+            to="/#reservar"
+            className="sm:hidden mt-space-sm flex items-center justify-center px-space-md py-space-md bg-primary-container text-on-primary-container font-label-md text-label-md uppercase tracking-wider font-bold rounded shadow-md"
+          >
+            Reservar Cita Ahora
+          </Link>
+        </nav>
       </div>
     </header>
   );
