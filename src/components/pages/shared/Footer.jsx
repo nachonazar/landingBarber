@@ -1,28 +1,26 @@
 import { Link } from "react-router-dom";
 
-// Imagen temporal de Stitch: descargala a /public o /src/assets antes de publicar
 const LOGO_URL =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCIbAtdkso2___-PTz3LjGqy1laCG5tc0iV1yweBoovAYa9gXi-vrawr5OnrECB-eRHuyvHZkfhLRQjQnAAYvuFxQ4SNBMMLyYv1Pmy5WqXQd95bH6rLVIvbi3uJ8U25BuFUHgcOaOTG1faPjiLdVTWIPHjb-vDu9QQ9P0ctz2_5Y8XCBVIB-lACfrHeIPOrMKIp4eyQBE74d2I6z-bR3d_UToY4A0ofHwgTQ7MC24vXMFgaV2n7y6v";
 
+// ENLACES ACTUALIZADOS
 const navLinks = [
   { to: "/", label: "Inicio" },
   { to: "/#servicios", label: "Carta de Servicios & Precios" },
   { to: "/galeria", label: "Galería & Acabados" },
-  { to: "/reservar-turno", label: "Agenda tu Cita" },
+  { to: "/reservar-turno", label: "Agenda tu Cita" }, // Apunta a la nueva ruta
   { to: "/panel-barbero", label: "Acceso Profesional / Barbero" },
 ];
 
 const Footer = () => {
   const handleSubscribe = (e) => {
     e.preventDefault();
-    // TODO: conectar con tu backend / servicio de newsletter
   };
 
   return (
     <footer className="w-full bg-surface-container-lowest text-on-surface pt-space-2xl pb-space-xl shadow-[0_-4px_24px_rgba(0,0,0,0.8)]">
       <div className="max-w-[1240px] mx-auto px-gutter">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl pb-space-xl">
-          {/* Marca */}
           <div className="flex flex-col gap-space-md">
             <div className="flex items-center gap-space-sm">
               <img
@@ -47,7 +45,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Navegación */}
           <div className="flex flex-col gap-space-md">
             <span className="font-headline-sm text-headline-sm text-on-surface tracking-wide uppercase">
               Navegación
@@ -65,7 +62,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Horarios */}
           <div className="flex flex-col gap-space-md">
             <span className="font-headline-sm text-headline-sm text-on-surface tracking-wide uppercase">
               Horarios del Salón
@@ -88,13 +84,12 @@ const Footer = () => {
               <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-space-xs">
                 <span className="material-symbols-outlined text-secondary text-sm">
                   phone_in_talk
-                </span>
+                </span>{" "}
                 Recepción: 912 345 678
               </p>
             </div>
           </div>
 
-          {/* Newsletter */}
           <div className="flex flex-col gap-space-md">
             <span className="font-headline-sm text-headline-sm text-on-surface tracking-wide uppercase">
               Club de Caballeros
@@ -129,7 +124,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Legales */}
         <div className="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
           <p>
             © {new Date().getFullYear()} La Barbería Tradicional S.L. Todos los

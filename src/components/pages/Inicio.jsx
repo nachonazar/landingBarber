@@ -751,7 +751,287 @@ const Inicio = () => {
             </div>
           </div>
         </section>
+        {/* Contacto & Ubicación */}
+        <section
+          id="contacto"
+          className="relative py-24 bg-surface border-t border-outline-variant/30 overflow-hidden text-on-surface"
+        >
+          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none" />
 
+          <div className="max-w-[1240px] mx-auto px-gutter relative z-10">
+            {/* Cabecera de Sección */}
+            <div className="mb-14">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low border border-primary/20 text-primary text-xs font-semibold tracking-widest uppercase mb-4">
+                <span className="material-symbols-outlined text-sm">
+                  location_on
+                </span>
+                Sede Principal & Casco Histórico
+              </div>
+              <h2 className="font-headline-xl text-3xl sm:text-4xl lg:text-5xl text-on-surface font-medium tracking-tight">
+                Encuentra el{" "}
+                <span className="italic text-primary font-normal">
+                  Santuario
+                </span>
+              </h2>
+              <p className="mt-3 text-on-surface-variant text-sm sm:text-base max-w-xl font-light">
+                Un refugio silencioso de madera noble, navaja y toalla caliente
+                en el corazón de la ciudad.
+              </p>
+            </div>
+
+            {/* Estructura responsiva en 2 columnas */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+              {/* Columna 1: Información y Canales Directos */}
+              <div className="lg:col-span-5 flex flex-col justify-between space-y-8 bg-surface-container-low/90 border border-outline-variant/40 rounded-2xl p-8 sm:p-10 shadow-2xl backdrop-blur-sm">
+                <div className="space-y-7">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-surface-container-highest border border-outline-variant/60 flex items-center justify-center text-primary shrink-0 shadow-inner">
+                      <span className="material-symbols-outlined text-2xl">
+                        pin_drop
+                      </span>
+                    </div>
+                    <div>
+                      <h4 className="text-xs uppercase tracking-wider text-outline font-medium">
+                        Ubicación
+                      </h4>
+                      <p className="text-base sm:text-lg font-medium text-on-surface mt-0.5">
+                        Calle Mayor 42, Casco Histórico
+                      </p>
+                      <p className="text-xs text-on-surface-variant mt-1">
+                        Frente a la Plaza de los Artesanos • Estacionamiento de
+                        cortesía
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-surface-container-highest border border-outline-variant/60 flex items-center justify-center text-primary shrink-0 shadow-inner">
+                      <span className="material-symbols-outlined text-2xl">
+                        schedule
+                      </span>
+                    </div>
+                    <div className="space-y-1.5 flex-1">
+                      <h4 className="text-xs uppercase tracking-wider text-outline font-medium">
+                        Horarios de Salón
+                      </h4>
+                      <div className="flex justify-between items-center text-sm border-b border-outline-variant/30 pb-1.5 pt-1">
+                        <span className="text-on-surface-variant">
+                          Martes a Viernes
+                        </span>
+                        <span className="font-semibold text-on-surface">
+                          09:30 – 20:30 hs
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm border-b border-outline-variant/30 pb-1.5 pt-1">
+                        <span className="text-on-surface-variant">
+                          Sábados de Ritual
+                        </span>
+                        <span className="font-semibold text-on-surface">
+                          09:00 – 18:00 hs
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center text-xs text-outline pt-1">
+                        <span>Domingos y Lunes</span>
+                        <span className="text-secondary font-medium uppercase tracking-wide">
+                          Cerrado por descanso
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-surface-container-highest border border-outline-variant/60 flex items-center justify-center text-primary shrink-0 shadow-inner">
+                      <span className="material-symbols-outlined text-2xl">
+                        phone_in_talk
+                      </span>
+                    </div>
+                    <div>
+                      <h4 className="text-xs uppercase tracking-wider text-outline font-medium">
+                        Recepción Telefónica
+                      </h4>
+                      <a
+                        href="tel:+34912345678"
+                        className="text-base sm:text-lg font-medium text-on-surface hover:text-primary transition-colors mt-0.5 inline-block"
+                      >
+                        +34 912 345 678
+                      </a>
+                      <p className="text-xs text-outline mt-0.5">
+                        Línea rotativa disponible en horarios de atención
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-outline-variant/30">
+                  <a
+                    href="https://wa.me/34912345678?text=Hola,%20quisiera%20consultar%20por%20un%20turno%20en%20La%20Barber%C3%ADa%20Tradicional"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-neutral-950 font-semibold text-sm sm:text-base tracking-wide shadow-lg transition-all duration-300 transform active:scale-[0.99]"
+                  >
+                    <svg
+                      className="w-5 h-5 fill-current transition-transform group-hover:scale-110"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.35.491 1.199.534 1.287.043.088.072.19.014.306-.058.115-.087.19-.174.289-.087.101-.184.225-.262.303-.09.088-.184.185-.079.365.105.18.468.772 1.004 1.249.69.614 1.271.805 1.452.894.18.089.288.076.395-.048.107-.124.462-.538.585-.724.123-.186.246-.156.411-.095.166.061 1.054.497 1.235.587.18.09.301.135.346.212.045.077.045.446-.099.851z" />
+                    </svg>
+                    <span>Contactar por WhatsApp</span>
+                    <span className="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">
+                      arrow_forward
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Columna 2: Mockup Estilizado de Mapa */}
+              <div className="lg:col-span-7 flex flex-col justify-center">
+                <div className="relative w-full h-[460px] lg:h-full min-h-[420px] rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-2 shadow-2xl overflow-hidden group">
+                  <div className="relative w-full h-full rounded-xl overflow-hidden bg-surface-container">
+                    {/* Textura Cartográfica SVG */}
+                    <svg
+                      className="absolute inset-0 w-full h-full opacity-35"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <defs>
+                        <pattern
+                          id="grid-pattern"
+                          width="48"
+                          height="48"
+                          patternUnits="userSpaceOnUse"
+                        >
+                          <path
+                            d="M 48 0 L 0 0 0 48"
+                            fill="none"
+                            stroke="#2b2b2b"
+                            strokeWidth="0.8"
+                          />
+                        </pattern>
+                      </defs>
+                      <rect
+                        width="100%"
+                        height="100%"
+                        fill="url(#grid-pattern)"
+                      />
+                      <path
+                        d="M-50,220 C180,240 320,160 550,290 C700,370 850,300 1100,340"
+                        fill="none"
+                        stroke="#333333"
+                        strokeWidth="14"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M-50,220 C180,240 320,160 550,290 C700,370 850,300 1100,340"
+                        fill="none"
+                        stroke="#212121"
+                        strokeWidth="10"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M420,-40 C440,180 430,300 480,550"
+                        fill="none"
+                        stroke="#383838"
+                        strokeWidth="10"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M420,-40 C440,180 430,300 480,550"
+                        fill="none"
+                        stroke="#1f1f1f"
+                        strokeWidth="7"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M120,400 L780,80"
+                        fill="none"
+                        stroke="#d4af37"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 4"
+                        opacity="0.4"
+                      />
+                    </svg>
+
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-surface/40 to-surface/90 pointer-events-none" />
+
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20">
+                      <div className="mb-2 px-3.5 py-1.5 rounded-lg bg-surface-container-low/95 border border-primary/60 shadow-2xl backdrop-blur-md flex items-center gap-2 transform -translate-y-1 group-hover:scale-105 transition-transform duration-300">
+                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                        <span className="text-xs font-headline-sm font-semibold text-on-surface tracking-wide">
+                          La Barbería Tradicional
+                        </span>
+                      </div>
+                      <div className="relative flex items-center justify-center">
+                        <span className="absolute w-12 h-12 bg-primary/20 rounded-full animate-ping" />
+                        <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary-container p-0.5 shadow-2xl shadow-primary/30 flex items-center justify-center">
+                          <div className="w-full h-full rounded-full bg-surface flex items-center justify-center text-primary">
+                            <span className="material-symbols-outlined text-lg">
+                              content_cut
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-4 h-1.5 bg-black/80 rounded-full blur-[1px] mt-1" />
+                    </div>
+
+                    <div className="absolute top-[28%] left-[24%] flex items-center gap-1.5 opacity-60">
+                      <div className="w-2.5 h-2.5 rounded-full bg-surface-container-highest border border-outline" />
+                      <span className="text-[11px] text-outline font-mono tracking-tight">
+                        Plaza Mayor
+                      </span>
+                    </div>
+                    <div className="absolute bottom-[22%] right-[20%] flex items-center gap-1.5 opacity-60">
+                      <div className="w-2.5 h-2.5 rounded-full bg-surface-container-highest border border-outline" />
+                      <span className="text-[11px] text-outline font-mono tracking-tight">
+                        Parking Central
+                      </span>
+                    </div>
+
+                    <div className="absolute top-4 right-4 flex flex-col gap-1.5 z-10">
+                      <button
+                        aria-label="Acercar mapa"
+                        className="w-8 h-8 rounded-lg bg-surface-container-low/90 border border-outline-variant/50 text-on-surface-variant hover:text-primary flex items-center justify-center text-sm shadow-md transition-colors"
+                      >
+                        <span className="material-symbols-outlined text-base">
+                          add
+                        </span>
+                      </button>
+                      <button
+                        aria-label="Alejar mapa"
+                        className="w-8 h-8 rounded-lg bg-surface-container-low/90 border border-outline-variant/50 text-on-surface-variant hover:text-primary flex items-center justify-center text-sm shadow-md transition-colors"
+                      >
+                        <span className="material-symbols-outlined text-base">
+                          remove
+                        </span>
+                      </button>
+                      <button
+                        aria-label="Mi ubicación"
+                        className="w-8 h-8 rounded-lg bg-surface-container-low/90 border border-outline-variant/50 text-on-surface-variant hover:text-primary flex items-center justify-center text-sm shadow-md transition-colors"
+                      >
+                        <span className="material-symbols-outlined text-base">
+                          my_location
+                        </span>
+                      </button>
+                    </div>
+
+                    <div className="absolute bottom-4 left-4 right-4 sm:right-auto z-10">
+                      <a
+                        href="https://maps.google.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-surface-container-low/90 hover:bg-surface-container-highest border border-outline-variant/50 text-xs font-medium text-on-surface transition-colors shadow-lg backdrop-blur-md"
+                      >
+                        <span className="material-symbols-outlined text-sm text-primary">
+                          open_in_new
+                        </span>
+                        Abrir en Google Maps
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         {/* Modern Call to Action (Reemplaza el viejo formulario) */}
         <section className="w-full py-space-2xl bg-surface-container-lowest border-t border-outline/20">
           <div className="max-w-4xl mx-auto px-gutter text-center flex flex-col items-center gap-space-lg">
