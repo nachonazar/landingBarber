@@ -12,6 +12,7 @@ const links = [
   { to: "/", label: "Inicio" },
   { to: "/#servicios", label: "Servicios" }, // Servicios sigue en Inicio.jsx
   { to: "/galeria", label: "Galería" },
+  { to: "/#contacto", label: "Contacto" },
   { to: "/reservar-turno", label: "Reservar Turno" }, // Apunta a la nueva ruta
   { to: "/panel-barbero", label: "Panel Barbero" },
 ];
